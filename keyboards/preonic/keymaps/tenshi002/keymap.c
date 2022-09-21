@@ -18,6 +18,15 @@
 #include "muse.h"
 #include "keymap_french.h"
 
+typedef union {
+  uint32_t raw;
+  struct {
+    bool     rgb_layer_change :1;
+  };
+} user_config_t;
+
+user_config_t user_config;
+
 enum preonic_layers {
   _AZERTY,
   _DEV,
@@ -53,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_AZERTY] = LAYOUT_preonic_grid(
   KC_GESC, FR_AMPR, FR_EACU, FR_DQUO, FR_QUOT, FR_LPRN, FR_MINS, FR_EGRV, FR_UNDS, FR_CCED, FR_AGRV, KC_BSPC,
   KC_TAB , KC_Q   , KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL ,
-  DEV    , KC_A   , KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+  DEV    , KC_A   , KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT ,
   KC_LSFT, FR_W   , FR_X   , FR_C   , FR_V   , FR_B   , FR_N   , FR_COMM, FR_SCLN, FR_COLN, FR_EXLM, KC_RSFT,
   KC_LCTL, KC_LGUI, FN     , KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_RBRC, KC_LBRC, _______, FR_PERC
 ),
@@ -171,6 +180,15 @@ LAYOUT_preonic_grid(
 
 
 };
+
+void keyboard_post_init_user(void) {
+    rgblight_sethsv_noeeprom(HSV_WHITE);
+    rgblight_disable_noeeprom();
+}
+
+void keyboard_pre_init_user(void) {
+    rgblight_disable();
+}
 
 bool process_record_user (uint16_t keycode, keyrecord_t *record)
 {
@@ -332,4 +350,18 @@ bool music_mask_user(uint16_t keycode) {
     default:
       return true;
   }
+}
+
+bool led_update_kb(led_t led_state) {
+    bool res = led_update_user(led_state);
+    if(res) {
+        // writePin sets the pin high for 1 and low for 0.
+        // In this example the pins are inverted, setting
+        // it low/0 turns it on, and high/1 turns the LED off.
+        // This behavior depends on whether the LED is between the pin
+        // and VCC or the pin and GND.
+        writePin(B0, !led_state.num_lock);
+        writePin(B1, !led_state.caps_lock);
+    }
+    return res;
 }
