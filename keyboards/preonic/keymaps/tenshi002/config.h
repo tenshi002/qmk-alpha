@@ -16,9 +16,10 @@
 
 #pragma once
 
+#define AUDIO_INIT_DELAY
+
 #ifdef AUDIO_ENABLE
 #    define STARTUP_SONG SONG(WORKMAN_SOUND)
-// #define STARTUP_SONG SONG(NO_SOUND)
 
 #    define DEFAULT_LAYER_SONGS \
         { SONG(QWERTY_SOUND), SONG(COLEMAK_SOUND), SONG(DVORAK_SOUND) }
@@ -46,10 +47,3 @@
 
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
-
-#define RGBLIGHT_LAYERS
-
-//Define LED Indicator
-//#define LED_NUM_LOCK_PIN
-//#define LED_CAPS_LOCK_PIN
-
