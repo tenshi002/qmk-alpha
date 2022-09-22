@@ -72,22 +72,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |   (  |   )  |   \  |   /  |      |      |      |      |  Up  |      |      |
+ * |      |   (  |   )  |   \  |   /  |      |      |      |  Up  |      |      |   *  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |   {  |   }  |   [  |   ]  |      |      |      | Left | Down |Right |      |
+ * |      |   {  |   }  |   [  |   ]  |      |      | Left | Down |Right |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |   <  |   >  |   &  |   |  |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |   =  |   "  |   '  |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_DEV] =
 LAYOUT_preonic_grid(
     KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
-    _______, FR_LPRN, FR_RPRN, FR_BSLS, FR_SLSH, _______, _______, _______, _______, KC_UP  , _______, FR_ASTR,
-    _______, FR_LCBR, FR_RCBR, FR_LBRC, FR_RBRC, _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,
+    _______, FR_LPRN, FR_RPRN, FR_BSLS, FR_SLSH, _______, _______, _______, KC_UP  , _______, _______, FR_ASTR,
+    _______, FR_LCBR, FR_RCBR, FR_LBRC, FR_RBRC, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______,
     _______, FR_LABK, FR_RABK, FR_AMPR, FR_PIPE, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    _______, _______, _______, _______, _______, _______, _______, _______, KC_EQL , FR_DQUO, FR_QUOT, _______
 ),
 
 /* FN
@@ -122,7 +122,7 @@ LAYOUT_preonic_grid(
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |   1  |   2  |   3  |  =   |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |   0  |      |      |  %   |
+ * |      |      |      |      |      |             |      |   0  |   .  |      |  %   |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] =
@@ -131,7 +131,7 @@ LAYOUT_preonic_grid(
     _______, _______, _______, _______  , _______ , _______ , _______ , _______ , KC_P7  , KC_P8  , KC_P9  , KC_PPLS,
     _______, _______, _______, _______  , _______ , _______ , _______ , _______ , KC_P4  , KC_P5  , KC_P6  , KC_PCMM,
     _______, _______, _______, _______  , _______ , _______ , _______ , _______ , KC_P1  , KC_P2  , KC_P3  , KC_PEQL,
-    _______, _______, _______, _______  , _______ , _______ , _______ , _______ , KC_P0  , _______, _______, FR_PERC
+    _______, _______, _______, _______  , _______ , _______ , _______ , _______ , KC_P0  , FR_DOT , _______, FR_PERC
 ),
 
 /* Raise
@@ -149,7 +149,7 @@ LAYOUT_preonic_grid(
  */
 [_RAISE] =
 LAYOUT_preonic_grid(
-    ALGR(FR_SUP2), ALGR(FR_AMPR), ALGR(FR_EACU), ALGR(FR_DQUO), ALGR(FR_QUOT), ALGR(FR_LPRN), ALGR(FR_MINS), ALGR(FR_EGRV), ALGR(FR_UNDS), ALGR(FR_CCED), ALGR(FR_AGRV), KC_DEL,
+    ALGR(FR_SUP2), ALGR(FR_AMPR), ALGR(FR_EACU), ALGR(FR_DQUO), ALGR(FR_QUOT), ALGR(FR_LPRN),ALGR(FR_MINS), ALGR(FR_EGRV), ALGR(FR_UNDS), ALGR(FR_CCED), ALGR(FR_AGRV), KC_DEL,
     _______      , _______      , _______      , FR_EURO      , _______      , _______      ,_______      , _______      , _______      ,_______      , _______      , _______      ,
     _______      , _______      , _______      , _______      , _______      , _______      ,_______      , _______      , _______      ,_______      , _______      , _______      ,
     _______      , _______      , _______      , _______      , _______      , _______      ,_______      , _______      , _______      ,_______      , _______      , _______      ,
@@ -182,12 +182,12 @@ LAYOUT_preonic_grid(
 };
 
 void keyboard_post_init_user(void) {
-    rgblight_sethsv_noeeprom(HSV_WHITE);
-    rgblight_disable_noeeprom();
+    rgblight_sethsv_noeeprom(HSV_OFF);
+    //rgblight_disable_noeeprom();
 }
 
 void keyboard_pre_init_user(void) {
-    rgblight_disable();
+    //rgblight_disable();
 }
 
 bool process_record_user (uint16_t keycode, keyrecord_t *record)
@@ -253,115 +253,3 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record)
   return true;
 };
 
-bool muse_mode = false;
-uint8_t last_muse_note = 0;
-uint16_t muse_counter = 0;
-uint8_t muse_offset = 70;
-uint16_t muse_tempo = 50;
-
-bool encoder_update_user(uint8_t index, bool clockwise) {
-  if (muse_mode)
-  {
-    if (IS_LAYER_ON (_RAISE))
-    {
-      if (clockwise)
-      {
-        muse_offset++;
-      }
-      else
-      {
-        muse_offset--;
-      }
-    }
-    else
-    {
-      if (clockwise)
-      {
-        muse_tempo += 1;
-      }
-      else
-      {
-        muse_tempo -= 1;
-      }
-    }
-  }
-  else
-  {
-    if (clockwise)
-    {
-      register_code (KC_PGDN);
-      unregister_code (KC_PGDN);
-    }
-    else
-    {
-      register_code (KC_PGUP);
-      unregister_code (KC_PGUP);
-    }
-  }
-    return true;
-}
-
-bool dip_switch_update_user(uint8_t index, bool active) {
-    switch (index) {
-        case 0:
-            if (active) {
-                layer_on(_ADJUST);
-            } else {
-                layer_off(_ADJUST);
-            }
-            break;
-        case 1:
-            if (active) {
-                muse_mode = true;
-            } else {
-                muse_mode = false;
-            }
-    }
-    return true;
-}
-
-
-void matrix_scan_user(void) {
-#ifdef AUDIO_ENABLE
-    if (muse_mode) {
-        if (muse_counter == 0) {
-            uint8_t muse_note = muse_offset + SCALE[muse_clock_pulse()];
-            if (muse_note != last_muse_note) {
-                stop_note(compute_freq_for_midi_note(last_muse_note));
-                play_note(compute_freq_for_midi_note(muse_note), 0xF);
-                last_muse_note = muse_note;
-            }
-        }
-        muse_counter = (muse_counter + 1) % muse_tempo;
-    } else {
-        if (muse_counter) {
-            stop_all_notes();
-            muse_counter = 0;
-        }
-    }
-#endif
-}
-
-bool music_mask_user(uint16_t keycode) {
-  switch (keycode) {
-    case RAISE:
-    case LOWER:
-      return false;
-    default:
-      return true;
-  }
-}
-
-bool led_update_kb(led_t led_state) {
-    bool res = led_update_user(led_state);
-    if(res) {
-        // writePin sets the pin high for 1 and low for 0.
-        // In this example the pins are inverted, setting
-        // it low/0 turns it on, and high/1 turns the LED off.
-        // This behavior depends on whether the LED is between the pin
-        // and VCC or the pin and GND.
-        writePin(B0, !led_state.num_lock);
-        writePin(B1, !led_state.caps_lock);
-    }
-    return res;
-}
