@@ -36,6 +36,7 @@
 */
 
 #define MIDI_BASIC
+#define NO_MUSIC_MODE
 
 /* enable advanced MIDI features:
    - MIDI notes can be added to the keymap
