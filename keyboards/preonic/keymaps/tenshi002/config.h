@@ -25,6 +25,13 @@
         { SONG(QWERTY_SOUND), SONG(COLEMAK_SOUND), SONG(DVORAK_SOUND) }
 #endif
 
+// define how to activate caps word : tape 2 times Shift
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT 3000  // End caps word after 3 seconds.
+
+
+// Disable music mode -> gain size compilation
+#define NO_MUSIC_MODE
 #define MUSIC_MASK (keycode != KC_NO)
 
 /*
@@ -36,7 +43,6 @@
 */
 
 #define MIDI_BASIC
-#define NO_MUSIC_MODE
 
 /* enable advanced MIDI features:
    - MIDI notes can be added to the keymap

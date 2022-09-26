@@ -19,3 +19,5 @@ AUDIO_ENABLE = yes				# Audio output
 RGBLIGHT_ENABLE = yes			# Enable WS2812 RGB underlight.
 BACKLIGHT_ENABLE = no			# Enable keyboard backlight functionality
 MUSIC_ENABLE = no
+CAPS_WORD_ENABLE = yes			# Activate caps word
+
