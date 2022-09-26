@@ -6,11 +6,11 @@ BOOTLOADER = stm32-dfu
 # Cause the final step to take longer, but should get you a smaller compiled size.
 # This also disables Action Functions, and Action Macros, both of which are deprecated.
 # This will get you the most savings, in most situations.
-LTO_ENABLE = yes
+LTO_ENABLE = no
 
 # Disables some of the functionality that you may not need.
 # But note that extrakeys disables stuff like the media keys and system volume control.
-CONSOLE_ENABLE = no				# Console for debug
+CONSOLE_ENABLE = yes				# Console for debug
 COMMAND_ENABLE = no				# Commands for debug and configuration
 MOUSEKEY_ENABLE = no			# Mouse keys
 EXTRAKEY_ENABLE = yes			# Audio control and System control
@@ -25,4 +25,3 @@ MUSIC_ENABLE = no
 CAPS_WORD_ENABLE = yes			# Activate caps word
 
 SEND_STRING_ENABLE = no
-GRAVE_ESC_ENABLE = yes
