@@ -18,9 +18,13 @@ EXTRAKEY_ENABLE = yes			# Audio control and System control
 BOOTMAGIC_ENABLE = no			# Enable Bootmagic Lite
 
 AUDIO_ENABLE = yes				# Audio output
-RGBLIGHT_ENABLE = yes			# Enable WS2812 RGB underlight.
 BACKLIGHT_ENABLE = no			# Enable keyboard backlight functionality
 MUSIC_ENABLE = no
 CAPS_WORD_ENABLE = yes			# Activate caps word
 
 SEND_STRING_ENABLE = no
+
+RGBLIGHT_ENABLE = yes			# Enable WS2812 RGB underlight.
+# Do not enable RGB_MATRIX_ENABLE together with RGBLIGHT_ENABLE
+RGB_MATRIX_ENABLE = no
+RGB_MATRIX_DRIVER = WS2812
