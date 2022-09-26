@@ -1,5 +1,8 @@
 SRC += muse.c
 
+# Bootloader selection
+BOOTLOADER = stm32-dfu
+
 # Cause the final step to take longer, but should get you a smaller compiled size.
 # This also disables Action Functions, and Action Macros, both of which are deprecated.
 # This will get you the most savings, in most situations.
@@ -21,3 +24,5 @@ BACKLIGHT_ENABLE = no			# Enable keyboard backlight functionality
 MUSIC_ENABLE = no
 CAPS_WORD_ENABLE = yes			# Activate caps word
 
+SEND_STRING_ENABLE = no
+GRAVE_ESC_ENABLE = yes

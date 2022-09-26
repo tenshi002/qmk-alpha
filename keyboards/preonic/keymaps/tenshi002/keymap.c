@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Azerty
  * ,-----------------------------------------------------------------------------------.
- * | Esc  |   &  |   é  |   "  |   '  |   (  |   -  |   è  |   _  |   ç  |   à  | Bksp |
+ * | GEsc |   &  |   é  |   "  |   '  |   (  |   -  |   è  |   _  |   ç  |   à  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |   A  |   Z  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -56,15 +56,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   W  |   X  |   C  |   V  |   B  |   N  |   ,  |   ;  |   :  |   !  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | GUI  |  FN  | Alt  |Lower |    Space    |Raise |   $  |   ^  |      |  %   |
+ * | Ctrl | GUI  |  FN  | Alt  |Lower |    Space    |Raise |   $  |   ^  |   ù  |  %   |
  * `-----------------------------------------------------------------------------------'
  */
 [_AZERTY] = LAYOUT_preonic_grid(
-  KC_GESC, FR_AMPR, FR_EACU, FR_DQUO, FR_QUOT, FR_LPRN, FR_MINS, FR_EGRV, FR_UNDS, FR_CCED, FR_AGRV, KC_BSPC,
+  QK_GESC, FR_AMPR, FR_EACU, FR_DQUO, FR_QUOT, FR_LPRN, FR_MINS, FR_EGRV, FR_UNDS, FR_CCED, FR_AGRV, KC_BSPC,
   KC_TAB , KC_Q   , KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL ,
   DEV    , KC_A   , KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT ,
   KC_LSFT, FR_W   , FR_X   , FR_C   , FR_V   , FR_B   , FR_N   , FR_COMM, FR_SCLN, FR_COLN, FR_EXLM, KC_RSFT,
-  KC_LCTL, KC_LGUI, FN     , KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_RBRC, KC_LBRC, _______, FR_PERC
+  KC_LCTL, KC_LGUI, FN     , KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_RBRC, KC_LBRC, FR_UGRV, FR_PERC
 ),
 
 
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |   (  |   )  |   \  |   /  |      |      |      |  Up  |      |      |   *  |
+ * |      |   (  |   )  |   \  |   /  |      |      |      |  Up  |      |  =>  |   *  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |   {  |   }  |   [  |   ]  |      |      | Left | Down |Right |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -136,7 +136,7 @@ LAYOUT_preonic_grid(
 
 /* Raise
  * ,-----------------------------------------------------------------------------------.
- * |   `  |   ¹  |   ~  |   #  |   {  |   [  |   |  |   `  |   \  |   ^  |   @  | Bksp |
+ * |   ²  |   ¹  |   ~  |   #  |   {  |   [  |   |  |   `  |   \  |   ^  |   @  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |   €  |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -149,7 +149,7 @@ LAYOUT_preonic_grid(
  */
 [_RAISE] =
 LAYOUT_preonic_grid(
-    ALGR(FR_SUP2), ALGR(FR_AMPR), ALGR(FR_EACU), ALGR(FR_DQUO), ALGR(FR_QUOT), ALGR(FR_LPRN),ALGR(FR_MINS), ALGR(FR_EGRV), ALGR(FR_UNDS), ALGR(FR_CCED), ALGR(FR_AGRV), KC_DEL,
+    FR_SUP2      , ALGR(FR_AMPR), ALGR(FR_EACU), ALGR(FR_DQUO), ALGR(FR_QUOT), ALGR(FR_LPRN),ALGR(FR_MINS), ALGR(FR_EGRV), ALGR(FR_UNDS), ALGR(FR_CCED), ALGR(FR_AGRV), KC_DEL,
     _______      , _______      , _______      , FR_EURO      , _______      , _______      ,_______      , _______      , _______      ,_______      , _______      , _______      ,
     _______      , _______      , _______      , _______      , _______      , _______      ,_______      , _______      , _______      ,_______      , _______      , _______      ,
     _______      , _______      , _______      , _______      , _______      , _______      ,_______      , _______      , _______      ,_______      , _______      , _______      ,
@@ -200,7 +200,6 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record)
         set_single_persistent_default_layer (_AZERTY);
       }
       return false;
-      break;
     case DEV:
       if (record->event.pressed)
       {
@@ -211,7 +210,6 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record)
         layer_off (_DEV);
       }
       return false;
-      break;
     case FN:
       if (record->event.pressed)
       {
@@ -222,7 +220,6 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record)
         layer_off (_FN);
       }
       return false;
-      break;
     case LOWER:
       if (record->event.pressed)
       {
@@ -235,7 +232,6 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record)
         update_tri_layer (_LOWER, _RAISE, _ADJUST);
       }
       return false;
-      break;
     case RAISE:
       if (record->event.pressed)
       {
@@ -248,8 +244,8 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record)
         update_tri_layer (_LOWER, _RAISE, _ADJUST);
       }
       return false;
-      break;
+    default:
+      return true;
   }
-  return true;
 };
 
