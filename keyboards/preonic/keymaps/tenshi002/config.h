@@ -25,12 +25,11 @@
         { SONG(QWERTY_SOUND), SONG(COLEMAK_SOUND), SONG(DVORAK_SOUND) }
 #endif
 
-#ifdef SEND_STRING_ENABLE
+#ifdef CAPS_WORD_ENABLE
 // define how to activate caps word : tape 2 times Shift
 #   define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #   define CAPS_WORD_IDLE_TIMEOUT 3000  // End caps word after 3 seconds.
 #endif
-
 
 // Disable music mode -> gain size compilation
 #define NO_MUSIC_MODE
@@ -56,3 +55,6 @@
 
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 //#define MIDI_TONE_KEYCODE_OCTAVES 2
+
+// Define LED
+//#define LED_NUM_LOCK_PIN 2
