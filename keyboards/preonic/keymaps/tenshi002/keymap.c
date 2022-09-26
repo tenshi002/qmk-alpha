@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "print.h"
+
 #include QMK_KEYBOARD_H
 #include "muse.h"
 #include "keymap_french.h"
@@ -28,7 +28,7 @@ typedef union {
 user_config_t user_config;
 
 enum preonic_layers {
-  _AZERTY,
+  _AZERTY = 0,
   _DEV,
   _FN,
   _LOWER,
@@ -189,55 +189,19 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record)
 {
   switch (keycode)
   {
-    case AZERTY:
-      if (record->event.pressed)
-      {
-        set_single_persistent_default_layer (_AZERTY);
-      }
-      return false;
     case DEV:
-      if (record->event.pressed)
-      {
-        layer_on (_DEV);
-      }
-      else
-      {
-        layer_off (_DEV);
-      }
+        record->event.pressed ? layer_on (_DEV) : layer_off (_DEV);
       return false;
     case FN:
-      if (record->event.pressed)
-      {
-        layer_on (_FN);
-      }
-      else
-      {
-        layer_off (_FN);
-      }
+        record->event.pressed ? layer_on (_FN) : layer_off (_FN);
       return false;
     case LOWER:
-      if (record->event.pressed)
-      {
-        layer_on (_LOWER);
+        record->event.pressed ? layer_on (_LOWER) : layer_off (_LOWER);
         update_tri_layer (_LOWER, _RAISE, _ADJUST);
-      }
-      else
-      {
-        layer_off (_LOWER);
-        update_tri_layer (_LOWER, _RAISE, _ADJUST);
-      }
       return false;
     case RAISE:
-      if (record->event.pressed)
-      {
-        layer_on (_RAISE);
+        record->event.pressed ? layer_on (_RAISE) : layer_off (_RAISE);
         update_tri_layer (_LOWER, _RAISE, _ADJUST);
-      }
-      else
-      {
-        layer_off (_RAISE);
-        update_tri_layer (_LOWER, _RAISE, _ADJUST);
-      }
       return false;
     default:
       return true;
